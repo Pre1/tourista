@@ -2,16 +2,38 @@
 
 {% block title %}Detail{% endblock title %} 
 
+
+{% block my_content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="{{destination.pretty_picture.url}}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+{% endblock my_content %}
+
 {% block content %}
-    <p>{{destination.name}}</p>
-    <p>{{destination.description}}</p>
-    <p>{{destination.activities}}</p>
-    <p><img src="{{destination.pretty_picture.url}}"></p>
-    <p>{{destination.optimal_visiting_season}}</p>
-    <a href="{% url 'destination-update' destination.id %}">
-        <button>Update</button>
-    </a>
-    <a href="{% url 'destination-delete' destination.id %}">
-        <button>Delete</button>
-    </a>
+<div class = "details-body">
+    <h1 id = "details-name">{{destination.name}}</h1>
+    <div class = "details-desc ">
+        <p class="details-desc-lb mt-4">{{destination.description}}</p>
+        <p><span class="details-desc-lb">Activities:</span> {{destination.activities}}</p>
+        <p><span class="details-desc-lb">Optimal Visiting Season:</span> {{destination.optimal_visiting_season}}</p>
+    </div>
+    <div class = "text-right">
+        <a href="{% url 'destination-update' destination.id %}">
+        <button type="button" class="btn btn-primary btn-lg">Update <span class="far fa-edit"></button>
+        </a>
+        <a href="{% url 'destination-delete' destination.id %}">
+            <button type="button" class="btn btn-danger btn-lg mx-3">Delete <span class="fas fa-trash"></button>
+        </a>
+    </div>
+    
+</div>
+
 {% endblock content %}
+
+
